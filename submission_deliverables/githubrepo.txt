@@ -1,36 +1,3 @@
-curl -s https://api.github.com/repos/aimanharithzwork-wq/expressBookReviews
+curl -s https://api.github.com/repos/aimanharithzwork-wq/expressBookReviews | jq '.parent.full_name'
 
-{
-  "id": 1394640211,
-  "node_id": "R_kgDOUyCFUw",
-  "name": "expressBookReviews",
-  "full_name": "aimanharithzwork-wq/expressBookReviews",
-  "private": false,
-  "owner": {
-    "login": "aimanharithzwork-wq",
-    "id": 241314022,
-    "html_url": "https://github.com/aimanharithzwork-wq",
-    "type": "User"
-  },
-  "html_url": "https://github.com/aimanharithzwork-wq/expressBookReviews",
-  "description": "nodejsFinalModule",
-  "fork": true,
-  "url": "https://api.github.com/repos/aimanharithzwork-wq/expressBookReviews",
-  "parent": {
-    "id": 533628036,
-    "node_id": "R_kgDOH86EhA",
-    "name": "expressBookReviews",
-    "full_name": "ibm-developer-skills-network/expressBookReviews",
-    "private": false,
-    "html_url": "https://github.com/ibm-developer-skills-network/expressBookReviews"
-  },
-  "source": {
-    "id": 533628036,
-    "node_id": "R_kgDOH86EhA",
-    "name": "expressBookReviews",
-    "full_name": "ibm-developer-skills-network/expressBookReviews",
-    "private": false,
-    "html_url": "https://github.com/ibm-developer-skills-network/expressBookReviews"
-  },
-  "default_branch": "main"
-}
+"ibm-developer-skills-network/expressBookReviews"
