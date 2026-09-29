@@ -72,7 +72,12 @@ public_users.get('/author/:author', function (req, res) {
 
     isbns.forEach((isbn) => {
       if (books[isbn].author.toLowerCase() === author) {
-        matching_books.push(books[isbn]);
+        matching_books.push({
+          isbn: isbn,
+          author: books[isbn].author,
+          title: books[isbn].title,
+          reviews: books[isbn].reviews
+        });
       }
     });
 
@@ -101,7 +106,12 @@ public_users.get('/title/:title', function (req, res) {
 
     isbns.forEach((isbn) => {
       if (books[isbn].title.toLowerCase() === title) {
-        matching_books.push(books[isbn]);
+        matching_books.push({
+          isbn: isbn,
+          author: books[isbn].author,
+          title: books[isbn].title,
+          reviews: books[isbn].reviews
+        });
       }
     });
 
