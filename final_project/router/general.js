@@ -142,67 +142,103 @@ public_users.get('/review/:isbn', function (req, res) {
 });
 
 // =========================================================================
-// Task 10: 4 Methods using Async/Await and Promises with Axios
+// Node.JS program with 4 methods using Async/Await or Promises with Axios
+// Tasks 10 - 13
 // =========================================================================
 
 const BASE_URL = "http://localhost:5000";
 
-// Method 1 (Task 10): Get all books available in the shop using Async/Await with Axios
+/**
+ * Task 10: Get all books available in the shop using Async/Await with Axios
+ * Sends a GET request to the root endpoint '/' to retrieve the complete catalog.
+ * @returns {Promise<Object>} The books catalog object.
+ */
 const getAllBooks = async () => {
   try {
+    // Send an asynchronous HTTP GET request using Axios
     const response = await axios.get(`${BASE_URL}/`);
     console.log("All books retrieved successfully:");
     console.log(response.data);
     return response.data;
   } catch (error) {
+    // Structured error handling for network or server errors
     console.error("Error retrieving all books:", error.message);
     throw error;
   }
 };
 
-// Method 2 (Task 11): Get book details based on ISBN using Promises with Axios
-const getBookByISBN = (isbn) => {
-  return axios.get(`${BASE_URL}/isbn/${isbn}`)
-    .then((response) => {
-      console.log(`Book details for ISBN ${isbn}:`);
-      console.log(response.data);
-      return response.data;
-    })
-    .catch((error) => {
-      console.error(`Error retrieving book for ISBN ${isbn}:`, error.message);
-      throw error;
-    });
-};
-
-// Method 3 (Task 12): Get book details based on Author using Async/Await with Axios
-const getBooksByAuthor = async (author) => {
+/**
+ * Task 11: Get book details based on ISBN using Async/Await with Axios
+ * Sends a GET request to '/isbn/:isbn' to retrieve book details for a specific ISBN.
+ * @param {string|number} isbn - The ISBN identifier of the book.
+ * @returns {Promise<Object>} The book details object.
+ */
+const getBookByISBN = async (isbn) => {
   try {
-    const response = await axios.get(`${BASE_URL}/author/${encodeURIComponent(author)}`);
-    console.log(`Books by author ${author}:`);
+    // Send an asynchronous HTTP GET request for the specific ISBN
+    const response = await axios.get(`${BASE_URL}/isbn/${isbn}`);
+    console.log(`Book details for ISBN ${isbn} retrieved successfully:`);
     console.log(response.data);
     return response.data;
   } catch (error) {
+    // Structured error handling for missing book or server errors
+    console.error(`Error retrieving book for ISBN ${isbn}:`, error.message);
+    throw error;
+  }
+};
+
+/**
+ * Task 12: Get book details based on Author using Async/Await with Axios
+ * Sends a GET request to '/author/:author' to retrieve all books by a specific author.
+ * @param {string} author - The author name.
+ * @returns {Promise<Array>} Array of matching book objects.
+ */
+const getBooksByAuthor = async (author) => {
+  try {
+    // Send an asynchronous HTTP GET request encoding the author parameter
+    const response = await axios.get(`${BASE_URL}/author/${encodeURIComponent(author)}`);
+    console.log(`Books by author ${author} retrieved successfully:`);
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    // Structured error handling for author not found or server errors
     console.error(`Error retrieving books by author ${author}:`, error.message);
     throw error;
   }
 };
 
-// Method 4 (Task 13): Get book details based on Title using Promises with Axios
-const getBooksByTitle = (title) => {
-  return axios.get(`${BASE_URL}/title/${encodeURIComponent(title)}`)
-    .then((response) => {
-      console.log(`Books with title ${title}:`);
-      console.log(response.data);
-      return response.data;
-    })
-    .catch((error) => {
-      console.error(`Error retrieving books with title ${title}:`, error.message);
-      throw error;
-    });
+/**
+ * Task 13: Get book details based on Title using Async/Await with Axios
+ * Sends a GET request to '/title/:title' to retrieve all books matching the specified title.
+ * @param {string} title - The title of the book.
+ * @returns {Promise<Array>} Array of matching book objects.
+ */
+const getBooksByTitle = async (title) => {
+  try {
+    // Send an asynchronous HTTP GET request encoding the title parameter
+    const response = await axios.get(`${BASE_URL}/title/${encodeURIComponent(title)}`);
+    console.log(`Books with title ${title} retrieved successfully:`);
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    // Structured error handling for title not found or server errors
+    console.error(`Error retrieving books with title ${title}:`, error.message);
+    throw error;
+  }
 };
+
+// Aliases for compatibility with different course naming conventions
+const getBookList = getAllBooks;
+const getFromISBN = getBookByISBN;
+const getFromAuthor = getBooksByAuthor;
+const getFromTitle = getBooksByTitle;
 
 module.exports.general = public_users;
 module.exports.getAllBooks = getAllBooks;
 module.exports.getBookByISBN = getBookByISBN;
 module.exports.getBooksByAuthor = getBooksByAuthor;
 module.exports.getBooksByTitle = getBooksByTitle;
+module.exports.getBookList = getBookList;
+module.exports.getFromISBN = getFromISBN;
+module.exports.getFromAuthor = getFromAuthor;
+module.exports.getFromTitle = getFromTitle;
